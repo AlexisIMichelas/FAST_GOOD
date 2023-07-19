@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Connexion</h5>
+                        <form>
+                            <div class="form-group">
+                                <label for="username">Nom d'utilisateur</label>
+                                <input type="text" class="form-control" id="username" placeholder="Saisissez votre nom d'utilisateur">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mot de passe</label>
+                                <input type="password" class="form-control" id="password" placeholder="Saisissez votre mot de passe">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                        </form>
+                        <div class="mt-3 text-center">
+                            <p>Vous n'avez pas de compte ?</p>
+                            <a href="{{ path('app_registration') }}" class="btn btn-outline-primary">S'inscrire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

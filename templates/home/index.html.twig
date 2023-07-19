@@ -1,15 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
-    <div class="pink-stripe">
-        <h1>
-            Let's start coding&nbsp;&#129304;
-        </h1>
-    </div>
-    <div class="white-stripe">
-        <img src="{{ asset('build/images/LOGO_WILD_CODE_SCHOOL.png') }}"
-             alt="">
-    </div>
-{% endblock %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<img src="{{ asset('build/images/food1.jpg') }}" alt="En-tête">
+			</div>
+			<p>Bienvenue sur "Fast Good" ! Découvrez des recettes rapides, délicieuses et abordables qui raviront vos papilles. Trouvez ici des idées express pour tous les budgets, pour des plaisirs gourmands sans contrainte.</p>
+		</div>
+	</div>
+	<img src="{{ asset('build/images/food2.jpg') }}" alt="En-tête">
+</p>
+<p>Régalez-vous avec nos recettes faciles à réaliser et succombez à la cuisine rapide et savoureuse. De plus, vous avez la possibilité de partager vos propres recettes avec notre communauté. Proposez vos créations culinaires uniques et inspirez d'autres amateurs de cuisine rapide.</p>
+
+<img src="{{ asset('build/images/food3.jpg') }}" alt="En-tête">
+<p>Explorez également notre section FAQ pour trouver des réponses à vos questions les plus fréquentes. Que ce soit des conseils sur les substitutions d'ingrédients, des astuces de préparation ou des suggestions de variations de recettes, notre FAQ est là pour vous aider.</p>
+
+<p>Rejoignez-nous dès maintenant, partagez vos recettes, consultez nos FAQ et profitez d'une expérience culinaire rapide, délicieuse et collaborative. Bon appétit !</p>{% endblock %}

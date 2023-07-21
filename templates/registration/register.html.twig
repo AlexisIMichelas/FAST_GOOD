@@ -1,19 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription - Ligne bleue
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+	<div class="container">
+		{{ form_start(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+		<div class="row mt-5">
+			<div class="col-4 offset-4">
+				<div class="card m-auto bg-primary align-items-center">
+					<div class="card-body w-75">
+						<h4 class="card-title text-center">Inscription</h4>
+						{{ form_errors(registrationForm) }}
+						{{ form_start(registrationForm) }}
+						<div class="form-group mb-2">
+							{{ form_row(registrationForm.email, {'attr': {'class': 'form-control
+                             w-100', 'placeholder': 'Tape ton adresse mail ici'}}) }}
+						</div>
+						<div class="form-group mb-2">
+							{{ form_row(registrationForm.name, {'attr': {'class': 'form-control
+                             w-100', 'placeholder': 'Tape ton nom ici'}}) }}
+						</div>
+						<div class="form-group mb-2">
+							{{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-control
+                            ', 'placeholder': 'Tape ton mot de passe ici'}}) }}
+						</div>
+						<div class="form-group mb-2">
+							{{ form_row(registrationForm.conditions, {'attr': {'class': 'form-check-input'}}) }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 offset-4 d-flex">
+				<button type="submit" class="btn btn-success rounded-pill ms-auto me-auto mt-3">Clique ici pour t'inscrire</button>
+			</div>
+		</div>
+		{{ form_end(registrationForm) }}
+	</div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
 {% endblock %}

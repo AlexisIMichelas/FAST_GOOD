@@ -14,10 +14,9 @@
 			</div>
 		{% endif %}
 
-		<div class="container">
-			<h1 class="text-center text-light mb-5">On se connaît déjà ?</h1>
+		<div class="container mt-5">
 			<div class="row">
-				<div class="bg-secondary m-auto col-10 col-md-8 col-lg-6 p-5 rounded">
+				<div class="bg-primary m-auto col-10 col-md-8 col-lg-6 p-5 rounded">
 					<h4 class="text-center">Connexion</h4>
 					{% if error %}
 						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -27,19 +26,13 @@
 							<label class="" for="inputEmail">E-mail</label>
 							<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control bg-primary text-light p-2 border-0" placeholder="Tape ton e-mail ici" autocomplete="email" required autofocus>
 						</div>
-						<div class="form-group mb-2" {{stimulus_controller('eyeToggle')}}>
+						<div class="form-group mb-2">
 							<label for="inputPassword">Mot de passe</label>
 							<div class="input-group">
-								<input type="password" name="password" id="inputPassword" {{stimulus_target('eyeToggle', 'inputPassword')}} class="form-control bg-primary text-light p-2 border-0" autocomplete="current-password" placeholder="Tape ton mot de passe ici" required>
-								<span class="input-group-text bg-primary border-0">
-									<a href="#" class="toggle_hide_password" {{stimulus_action('eyeToggle', 'toggle')}}>
-										<i id="eyeIcon" class="fa-regular fa-eye-slash text-secondary" {{stimulus_target('eyeToggle', 'eyeIcon')}} aria-hidden="true"></i>
-									</a>
-								</span>
+								<input type="password" name="password" id="inputPassword" class="form-control bg-primary text-light p-2 border-0" autocomplete="current-password" placeholder="Tape ton mot de passe ici" required>
+								<span class="input-group-text bg-primary border-0"></span>
 							</div>
-							<div class="form-text text-end">
-								
-							</div>
+							<div class="form-text text-end"></div>
 						</div>
 					</form>
 				</div>
@@ -47,6 +40,7 @@
 				<div class="text-center mt-3">
 					<button class="btn btn-success rounded-pill ps-5 pe-5" type="submit">Clique ici pour te connecter
 					</button>
+					<button class="btn btn-success rounded-pill ps-5 pe-5" type="submit" onclick="window.location.href='{{ path('app_register') }}'">Pas encore inscrit ?</button>
 				</div>
 			</div>
 		</div>

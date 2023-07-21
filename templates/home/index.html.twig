@@ -5,18 +5,33 @@
 
 {% block body %}
 	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<img src="{{ asset('build/images/food1.jpg') }}" alt="En-tête">
+		<div class="row mt-3">
+			<div class="col-md-4">
+				<img src="{{ asset('build/images/food1.jpg') }}" alt="burger fries img" class="img-fluid w-75 h-100">
 			</div>
-			<p>Bienvenue sur "Fast Good" ! Découvrez des recettes rapides, délicieuses et abordables qui raviront vos papilles. Trouvez ici des idées express pour tous les budgets, pour des plaisirs gourmands sans contrainte.</p>
+			<div class="col-md-8 mt-5 align-self-center">
+				<p>Bienvenue sur "Fast Good" ! Découvrez des recettes rapides, délicieuses et abordables qui raviront vos papilles. Trouvez ici des idées express pour tous les budgets, pour des plaisirs gourmands sans contrainte.</p>
+			</div>
 		</div>
+
+		<div class="row mt-3">
+			<div class="col-md-8 align-self-center">
+				<p>Régalez-vous avec nos recettes faciles à réaliser et succombez à la cuisine rapide et savoureuse. De plus, vous avez la possibilité de partager vos propres recettes avec notre communauté. Proposez vos créations culinaires uniques et inspirez d'autres amateurs de cuisine rapide.</p>
+			</div>
+			<div class="col-md-4 mt-5">
+				<img src="{{ asset('build/images/food2.jpg') }}" alt="food img" class="img-fluid w-75 h-100">
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col-md-4">
+				<img src="{{ asset('build/images/food3.jpg') }}" alt="burger fries img" class="img-fluid w-75 h-100">
+			</div>
+			<div class="col-md-8 mt-5 align-self-center">
+				<p>Explorez également notre section FAQ pour trouver des réponses à vos questions les plus fréquentes. Que ce soit des conseils sur les substitutions d'ingrédients, des astuces de préparation ou des suggestions de variations de recettes, notre FAQ est là pour vous aider.</p>
+			</div>
+		</div>
+
+		<p class="mt-5 text-center">Rejoignez-nous dès maintenant, partagez vos recettes, consultez nos FAQ et profitez d'une expérience culinaire rapide, délicieuse et collaborative. Bon appétit !</p>
 	</div>
-	<img src="{{ asset('build/images/food2.jpg') }}" alt="En-tête">
-</p>
-<p>Régalez-vous avec nos recettes faciles à réaliser et succombez à la cuisine rapide et savoureuse. De plus, vous avez la possibilité de partager vos propres recettes avec notre communauté. Proposez vos créations culinaires uniques et inspirez d'autres amateurs de cuisine rapide.</p>
-
-<img src="{{ asset('build/images/food3.jpg') }}" alt="En-tête">
-<p>Explorez également notre section FAQ pour trouver des réponses à vos questions les plus fréquentes. Que ce soit des conseils sur les substitutions d'ingrédients, des astuces de préparation ou des suggestions de variations de recettes, notre FAQ est là pour vous aider.</p>
-
-<p>Rejoignez-nous dès maintenant, partagez vos recettes, consultez nos FAQ et profitez d'une expérience culinaire rapide, délicieuse et collaborative. Bon appétit !</p>{% endblock %}
+{% endblock %}

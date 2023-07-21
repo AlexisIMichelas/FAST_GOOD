@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" type="image/png" href="{{ asset('build/images/burger.png') }}"/>
+		<link rel="icon" type="image/png" href="{{ asset('build/images/burger.png') }}"/>
 
-    <title>
-        {% block title %}FAST GOOD
-        {% endblock %}
-    </title>
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+
+		<title>
+			{% block title %}FAST GOOD
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
 
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
 
-    <script src="https://kit.fontawesome.com/feed0b9777.js" crossorigin="anonymous"></script>
-</head>
+		<script src="https://kit.fontawesome.com/feed0b9777.js" crossorigin="anonymous"></script>
+	</head>
 
-<body>
-<header>
-    <img src="{{ asset('build/images/header.png') }}" alt="En-tête" class="img-fluid w-100 h-100">
-</header>
+	<body>
+		<header>
+			<img src="{{ asset('build/images/header.png') }}" alt="En-tête" class="img-fluid w-100 h-100">
+		</header>
 
-{% block nav %}
-    {% include 'include/_navbar.html.twig' %}
-{% endblock %}
+		{% block nav %}
+			{% include 'include/_navbar.html.twig' %}
+		{% endblock %}
 
-<main>
-    {% block body %}{% endblock %}
-</main>
-<footer class="bg-primary fixed-bottom mb-0">
-        <p class="text-end">© FAST GOOD 2023</p>
-    </footer>
-</body>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+		<footer class="bg-primary fixed-bottom">
+			<p class="text-end">© FAST GOOD 2023</p>
+		</footer>
+	</body>
 </html>

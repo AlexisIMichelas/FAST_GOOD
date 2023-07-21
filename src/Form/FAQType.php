@@ -2,27 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Recipe;
+use App\Entity\FAQ;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RecipeType extends AbstractType
+class FAQType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('ingredients')
-            ->add('steps')
-            ->add('picture')
+            ->add('question')
+            ->add('answer')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Recipe::class,
+            'data_class' => FAQ::class,
         ]);
     }
 }

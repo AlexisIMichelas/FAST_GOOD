@@ -5,3 +5,11 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+
+app_admin:
+    path: /admin
+    controller: App\Controller\AdminController::index
+
+add_admin_role:
+    path: /add_admin_role/1
+    controller: App\Controller\AdminController::addAdminRole

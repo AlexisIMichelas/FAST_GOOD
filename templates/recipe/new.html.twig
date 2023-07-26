@@ -1,42 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle recette{% endblock %}
+{% block title %}Nouvelle recette
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h1 class="mb-4">Ajouter une recette</h1>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<h1 class="mb-4">Ajouter une recette</h1>
 
-                {{ form_start(form) }}
-                <div class="mb-3">
-                    {{ form_label(form.name, 'Nom de la recette') }}
-                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_label(form.ingredients, 'Ingrédients') }}
-                    {{ form_widget(form.ingredients, {'attr': {'class': 'form-control', 'rows': 5}}) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_label(form.steps, 'Étapes') }}
-                    {{ form_widget(form.steps, {'attr': {'class': 'form-control', 'rows': 5}}) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_label(form.picture, 'Photo (JPG, PNG file)') }}
-                    {{ form_widget(form.picture, {'attr': {'class': 'form-control'}}) }}
-                </div>
-                {% if form.picture.vars.value %}
-                    <img src="{{ asset('uploads/' ~ form.picture.vars.value) }}" alt="Photo de la recette" class="img-fluid mb-3">
-                {% endif %}
-                <div class="mb-3">
-                    {{ form_label(form.category, 'Catégorie') }}
-                    {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
-                </div>
-                <button type="submit" class="btn btn-success">Ajouter</button>
-                {{ form_end(form) }}
+				{{ form_start(form) }}
+				<div class="mb-3">
+					{{ form_label(form.name, 'Nom de la recette') }}
+					{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_label(form.ingredients, 'Ingrédients') }}
+					{{ form_widget(form.ingredients, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_label(form.steps, 'Étapes') }}
+					{{ form_widget(form.steps, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+				</div>
+				<div class="mb-3">
+					{{ form_label(form.pictureFile, 'Photo (JPG, PNG file)') }}
+					{{ form_widget(form.pictureFile, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				{% if form.pictureFile.vars.value %}
+					<img src="{{ vich_uploader_asset(recipe) }}" alt="Photo de la recette" class="img-fluid mb-3">
+				{% endif %}
+				<div class="mb-3">
+					{{ form_label(form.category, 'Catégorie') }}
+					{{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<button type="submit" class="btn btn-success">Ajouter</button>
+				{{ form_end(form) }}
 
-                <a href="{{ path('app_recipe_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
-            </div>
-        </div>
-    </div>
+				<a href="{{ path('app_recipe_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+			</div>
+		</div>
+	</div>
 {% endblock %}

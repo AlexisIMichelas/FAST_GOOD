@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Recipe;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -34,8 +36,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 55)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
-    private ?Recipe $recipe = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recipe::class)]
+    private Collection $recipe;
+
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Recipe::class)]
+    private Collection $recipes;
+
+    public function __construct()
+    {
+        $this->recipe = new ArrayCollection();
+        $this->recipes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,15 +130,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRecipe(): ?Recipe
+    /**
+     * @return Collection<int, Recipe>
+     */
+    public function getRecipe(): Collection
     {
         return $this->recipe;
     }
 
-    public function setRecipe(?Recipe $recipe): static
+    public function addRecipe(Recipe $recipe): static
     {
-        $this->recipe = $recipe;
+        if (!$this->recipe->contains($recipe)) {
+            $this->recipe->add($recipe);
+            $recipe->setUser($this);
+        }
 
         return $this;
+    }
+
+    public function removeRecipe(Recipe $recipe): static
+    {
+        if ($this->recipe->removeElement($recipe)) {
+            // set the owning side to null (unless already changed)
+            if ($recipe->getUser() === $this) {
+                $recipe->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Recipe>
+     */
+    public function getRecipes(): Collection
+    {
+        return $this->recipes;
     }
 }

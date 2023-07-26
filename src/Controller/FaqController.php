@@ -14,15 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/f/a/q')]
 class FAQController extends AbstractController
 {
-    #[Route('/faq', name: 'app_faq', methods: ['GET'])]
+    #[Route('/faq', name: 'app_faq_index', methods: ['GET'])]
     public function index(FAQRepository $fAQRepository): Response
     {
         return $this->render('faq/index.html.twig', [
-            'f_a_qs' => $fAQRepository->findAll(),
+            'faqs' => $fAQRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_f_a_q_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_faq_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $fAQ = new FAQ();
@@ -33,24 +33,24 @@ class FAQController extends AbstractController
             $entityManager->persist($fAQ);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_f_a_q_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_faq_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('faq/new.html.twig', [
-            'f_a_q' => $fAQ,
+            'faq' => $fAQ,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_f_a_q_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_faq_show', methods: ['GET'])]
     public function show(FAQ $fAQ): Response
     {
         return $this->render('faq/show.html.twig', [
-            'f_a_q' => $fAQ,
+            'faq' => $fAQ,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_f_a_q_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_faq_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, FAQ $fAQ, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(FAQType::class, $fAQ);
@@ -59,7 +59,7 @@ class FAQController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_f_a_q_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_faq_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('faq/edit.html.twig', [
@@ -68,14 +68,14 @@ class FAQController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_f_a_q_delete', methods: ['POST'])]
-    public function delete(Request $request, FAQ $fAQ, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}', name: 'app_faq_delete', methods: ['POST'])]
+    public function delete(Request $request, FAQ $faq, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $fAQ->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($fAQ);
+        if ($this->isCsrfTokenValid('delete' . $faq->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($faq);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_f_a_q_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_faq_index', [], Response::HTTP_SEE_OTHER);
     }
 }

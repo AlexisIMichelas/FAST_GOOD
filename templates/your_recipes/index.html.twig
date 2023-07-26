@@ -15,7 +15,7 @@
                 <p class="card-text">Ingrédients : {{ recipe.ingredients }}</p>
                 <p class="card-text">Étapes : {{ recipe.steps }}</p>
                 {% if recipe.picture %}
-                    <img src="{{ asset('uploads/' ~ recipe.picture) }}" alt="Image de la recette" class="img-fluid">
+                    <img src="{{ vich_uploader_asset(recipe) }}" alt="Photo de la recette" class="img-fluid mb-3 h-25 w-25">
                 {% else %}
                     <p>Aucune image disponible.</p>
                 {% endif %}

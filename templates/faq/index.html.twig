@@ -15,14 +15,14 @@
             </tr>
         </thead>
         <tbody>
-        {% for f_a_q in f_a_qs %}
+        {% for faq in faqs %}
             <tr>
-                <td>{{ f_a_q.id }}</td>
-                <td>{{ f_a_q.question }}</td>
-                <td>{{ f_a_q.answer }}</td>
+                <td>{{ faq.id }}</td>
+                <td>{{ faq.question }}</td>
+                <td>{{ faq.answer }}</td>
                 <td>
-                    <a href="{{ path('app_f_a_q_show', {'id': f_a_q.id}) }}">show</a>
-                    <a href="{{ path('app_f_a_q_edit', {'id': f_a_q.id}) }}">edit</a>
+                    <a href="{{ path('app_faq_show', {'id': faq.id}) }}">show</a>
+                    <a href="{{ path('app_faq_edit', {'id': faq.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_f_a_q_new') }}">Create new</a>
+    <a href="{{ path('app_faq_new') }}">Create new</a>
 {% endblock %}

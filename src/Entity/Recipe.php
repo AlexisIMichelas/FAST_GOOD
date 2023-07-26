@@ -3,15 +3,24 @@
 namespace App\Entity;
 
 use App\Entity\User;
-use App\Repository\RecipeRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\RecipeRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
 {
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $picture = null;
+
+    #[Vich\UploadableField(mapping: 'picture_file', fileNameProperty: 'picture')]
+    private ?File $pictureFile = null;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -27,18 +36,16 @@ class Recipe
     private ?string $steps = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $picture = null;
 
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: User::class)]
-    private Collection $users;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
     private ?Category $category = null;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'Recipe')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    private ?User $author = null;
 
     public function getId(): ?int
     {
@@ -93,35 +100,6 @@ class Recipe
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): static
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->setRecipe($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getRecipe() === $this) {
-                $user->setRecipe(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -131,6 +109,40 @@ class Recipe
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+    public function setPictureFile(File $image = null): self
+    {
+        $this->pictureFile = $image;
+        return $this;
+    }
+
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }
